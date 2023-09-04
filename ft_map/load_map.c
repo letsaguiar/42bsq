@@ -6,7 +6,7 @@
 /*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:50:55 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/04 19:26:56 by leticia-aguia    ###   ########.fr       */
+/*   Updated: 2023/09/04 19:30:28 by leticia-aguia    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_map	*build_empty_map()
 	map = (t_map *) malloc(sizeof (t_map));
 	map->line_counter = 0;
 	map->line_length = 0;
+	map->empty_character = '\0';
+	map->obstacle_character = '\0';
+	map->full_character = '\0';
 	return (map);
 }
 

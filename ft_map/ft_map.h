@@ -6,7 +6,7 @@
 /*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:48:21 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/04 19:16:02 by leticia-aguia    ###   ########.fr       */
+/*   Updated: 2023/09/04 19:42:21 by leticia-aguia    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ typedef struct s_map {
 }	t_map;
 
 t_map	*load_map(char *filename);
+
+int		validate_map(char *filename, t_map *config);
 
 #endif
