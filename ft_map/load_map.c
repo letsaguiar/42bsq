@@ -16,7 +16,7 @@
 #include "ft_map.h"
 #include "../ft_string/ft_string.h"
 
-t_map	*build_empty_map()
+t_map	*build_empty_map(void)
 {
 	t_map	*map;
 
@@ -75,7 +75,7 @@ void	read_map_line_length(char *filename, t_map *map)
 t_map	*load_map(char *filename)
 {
 	t_map	*map;
-	
+
 	map = build_empty_map();
 	read_map_config(filename, map);
 	read_map_line_length(filename, map);

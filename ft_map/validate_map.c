@@ -44,7 +44,7 @@ int	validate_map_line_length(char *filename, t_map *config)
 		else if (is_second_line && buffer == '\n')
 		{
 			if (counter != config->line_length)
-					return (0);
+				return (0);
 			counter = 0;
 		}
 	}

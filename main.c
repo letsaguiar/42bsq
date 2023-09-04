@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "ft_map/ft_map.h"
 #include "ft_string/ft_string.h"
@@ -19,7 +18,7 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 
-	if (argc >  1)
+	if (argc > 1)
 	{
 		map = load_map(argv[1]);
 		if (!validate_map(argv[1], map))
