@@ -6,10 +6,11 @@
 /*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:00:41 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/04 19:03:08 by leticia-aguia    ###   ########.fr       */
+/*   Updated: 2023/09/04 19:09:31 by leticia-aguia    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
 int	ft_atoi(char *str)
 {
 	unsigned int	i;
@@ -22,7 +23,7 @@ int	ft_atoi(char *str)
 	result = 0;
 	while (str[i])
 	{
-		if (str[i] >= '0' && str[i] <= '9')
+		if (is_numeric_char(str[i]))
 			result = result * 10 + str[i] - 48;
 		else
 			break ;
