@@ -6,7 +6,7 @@
 /*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/05 10:32:28 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/05 10:47:03 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 			return (1);
 		}
 		map = load_map(argv[1], config);
-		print_map(map);
+		find_biggest_square(map, config);
 		destroy_map(map);
 		free(config);
 	}
