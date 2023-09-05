@@ -33,13 +33,20 @@ void	print_biggest_square(char **map, t_map *config, int max_i, int max_j, int s
 	print_map(map);
 }
 
+int min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
 void	generate_square_permutations(char **matrix, t_map *config)
 {
 	int max_size = 0;
 	int	max_i;
 	int	max_j;
 
-	for (int size = 1; size <= config->line_counter && size <= config->line_length; size++) {
+	for (int size = min(config->line_length, config->line_counter); size >= 1;  size--) {
         for (int i = 0; i <= config->line_counter - size; i++) {
             for (int j = 0; j <= config->line_length - size; j++) {
                 int isZeroSquare = 1;
@@ -52,13 +59,18 @@ void	generate_square_permutations(char **matrix, t_map *config)
                     }
                     if (!isZeroSquare) break;
                 }
-                if (isZeroSquare && size > max_size) {
+                if (isZeroSquare) {
                 	max_size = size;
 					max_i = i;
 					max_j = j;
+					break;
                 }
             }
+			if (max_size > 0)
+				break;
         }
+		if (max_size > 0)
+			break;
     }
 
 	print_biggest_square(matrix, config, max_i, max_j, max_size);
