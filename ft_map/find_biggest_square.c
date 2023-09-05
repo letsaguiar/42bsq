@@ -11,111 +11,60 @@
 /* ************************************************************************** */
 
 #include "ft_map.h"
-#include <stdlib.h>
+#include <stdio.h>
 
-void	print_biggest_square(
-	char **map,
-	t_map *config,
-	t_map_square *biggest_square
-)
+void	print_biggest_square(char **map, t_map *config, int max_i, int max_j, int size)
 {
 	int	i;
 	int	j;
 
-	i = biggest_square->i;
-	while (i < biggest_square->i + biggest_square->size)
+	i = max_i;
+	while (i < max_i + size)
 	{
-		j = biggest_square->j;
-		while (j < biggest_square->j + biggest_square->j)
+		j = max_j;
+		while (j < max_j + size)
 		{
 			map[i][j] = config->full_character;
 			j++;
 		}
 		i++;
 	}
+
 	print_map(map);
 }
 
-int	is_empty_square(char **map, t_map *config, int i, int j, int size)
+void	generate_square_permutations(char **matrix, t_map *config)
 {
-	int	x;
-	int	y;
+	int max_size = 0;
+	int	max_i;
+	int	max_j;
 
-	x = i;
-	while (x < i + size)
-	{
-		y = j;
-		while (y < j + size)
-		{
-			if (map[x][y] != config->empty_character)
-				return (0);
-			y++;
-		}
-		x++;
-	}
-	return (1);
-}
+	for (int size = 1; size <= config->line_counter && size <= config->line_length; size++) {
+        for (int i = 0; i <= config->line_counter - size; i++) {
+            for (int j = 0; j <= config->line_length - size; j++) {
+                int isZeroSquare = 1;
+                for (int x = i; x < i + size; x++) {
+                    for (int y = j; y < j + size; y++) {
+                        if (matrix[x][y] != config->empty_character) {
+                            isZeroSquare = 0;
+                            break;
+                        }
+                    }
+                    if (!isZeroSquare) break;
+                }
+                if (isZeroSquare && size > max_size) {
+                	max_size = size;
+					max_i = i;
+					max_j = j;
+                }
+            }
+        }
+    }
 
-t_map_square	*generate_square_permutations(char **matrix, t_map *config)
-{
-	t_map_square	*biggest_square;
-	int				size;
-	int				i;
-	int				j;
-	int				x;
-	int				y;
-	int				is_empty_square;
-
-	biggest_square = (t_map_square *) malloc(sizeof (t_map_square));
-	size = 1;
-	while (size <= config->line_counter && size <= config->line_length)
-	{
-		i = 0;
-		while (i <= config->line_counter - size)
-		{
-			j = 0;
-			while (j <= config->line_length - size)
-			{
-				is_empty_square = 1;
-				x = i;
-				while (x < i + size)
-				{
-					y = j;
-					while (y < j + size)
-					{
-						if (matrix[x][y] != config->empty_character)
-						{
-							is_empty_square = 0;
-							break;
-						}	
-						y++;
-					}
-					if (!is_empty_square)
-						break;
-					x++;
-				}
-				if (is_empty_square && size > biggest_square->size)
-				{
-					biggest_square->size = size;
-					biggest_square->i = i;
-					biggest_square->j = j;
-				}
-				j++;
-			}
-			i++;
-		}
-		size++;
-	}
-	
-	return (biggest_square);
+	print_biggest_square(matrix, config, max_i, max_j, max_size);
 }
 
 void	find_biggest_square(char **map, t_map *config)
 {
-	t_map_square	*biggest_square;
-
-	biggest_square = generate_square_permutations(map, config);
-	print_biggest_square(map, config, biggest_square);
-	free(biggest_square);
+	generate_square_permutations(map, config);
 }
-
