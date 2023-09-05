@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 	{
-		map = load_map(argv[1]);
+		map = load_map_config(argv[1]);
 		if (!validate_map(argv[1], map))
 		{
 			ft_putstr("map error\n");

@@ -21,7 +21,7 @@ typedef struct s_map {
 	char	full_character;
 }	t_map;
 
-t_map	*load_map(char *filename);
+t_map	*load_map_config(char *filename);
 
 int		validate_map(char *filename, t_map *config);
 
