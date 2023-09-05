@@ -3,81 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
+/*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 18:50:55 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/04 19:30:28 by leticia-aguia    ###   ########.fr       */
+/*   Created: 2023/09/05 10:03:03 by lde-agui          #+#    #+#             */
+/*   Updated: 2023/09/05 10:33:10 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_map.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "ft_map.h"
-#include "../ft_string/ft_string.h"
 
-t_map	*build_empty_map_config(void)
+char	**build_empty_map(t_map *config)
 {
-	t_map	*map;
+	int		i;
+	char	**map;
 
-	map = (t_map *) malloc(sizeof (t_map));
-	map->line_counter = 0;
-	map->line_length = 0;
-	map->empty_character = '\0';
-	map->obstacle_character = '\0';
-	map->full_character = '\0';
+	map = malloc((config->line_counter + 1) * sizeof (char *));
+	i = 0;
+	while (i < config->line_counter)
+	{
+		map[i] = malloc(config->line_length * sizeof (char));
+		i++;
+	}
+	map[i] = NULL;
 	return (map);
 }
 
-void	read_map_config(char *filename, t_map *map)
+char	**populate_map(char *filename, char **map)
 {
-	int		fd;
-	char	buffer;
+	unsigned int		fd;
+	unsigned int		is_second_line;
+	unsigned int		i;
+	unsigned int		j;
+	char				buffer;
 
 	fd = open(filename, O_RDONLY);
-	while (read(fd, &buffer, 1) > 0 && buffer != '\n')
-	{
-		if (is_numeric_char(buffer))
-			map->line_counter = map->line_counter * 10 + buffer - 48;
-		else if (!map->empty_character)
-			map->empty_character = buffer;
-		else if (!map->obstacle_character)
-			map->obstacle_character = buffer;
-		else if (!map->full_character)
-			map->full_character = buffer;
-		else
-			break ;
-	}
-}
-
-void	read_map_line_length(char *filename, t_map *map)
-{
-	int		fd;
-	int		counter;
-	int		is_second_line;
-	char	buffer;
-
-	fd = open(filename, O_RDONLY);
-	counter = 0;
 	is_second_line = 0;
+	i = 0;
+	j = 0;
 	while (read(fd, &buffer, 1) > 0)
 	{
 		if (!is_second_line && buffer == '\n')
 			is_second_line = 1;
 		else if (is_second_line && buffer != '\n')
-			counter++;
+			map[i][j++] = buffer;
 		else if (is_second_line && buffer == '\n')
-			break ;
+		{
+			i++;
+			j = 0;
+		}
 	}
-	map->line_length = counter;
+	return (map);
 }
 
-t_map	*load_map_config(char *filename)
+char	**load_map(char *filename, t_map *config)
 {
-	t_map	*map;
+	char	**map;
 
-	map = build_empty_map_config();
-	read_map_config(filename, map);
-	read_map_line_length(filename, map);
+	map = build_empty_map(config);
+	map = populate_map(filename, map);
 	return (map);
 }

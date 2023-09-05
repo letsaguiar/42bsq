@@ -6,7 +6,7 @@
 /*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/04 19:46:13 by leticia-aguia    ###   ########.fr       */
+/*   Updated: 2023/09/05 10:32:28 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	*map;
+	t_map	*config;
+	char	**map;
 
 	if (argc > 1)
 	{
-		map = load_map_config(argv[1]);
-		if (!validate_map(argv[1], map))
+		config = load_map_config(argv[1]);
+		if (!validate_map(argv[1], config))
 		{
 			ft_putstr("map error\n");
 			return (1);
 		}
-		free(map);
+		map = load_map(argv[1], config);
+		print_map(map);
+		destroy_map(map);
+		free(config);
 	}
 	return (0);
 }
