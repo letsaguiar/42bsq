@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dadantas <dadantas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:29:25 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 11:38:04 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:45:14 by dadantas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int	validate_map_config(t_map_config *config)
 	);
 }
 
+int	is_valid_character(int buffer, t_map_config *config)
+{
+	return ((buffer != config->empty_character
+			&& buffer != config->obstacle_character
+			&& buffer != config->full_character));
+}
+
 int	validate_map_characters(char *filename, t_map_config *config)
 {
 	int		fd;
@@ -41,12 +48,7 @@ int	validate_map_characters(char *filename, t_map_config *config)
 			is_second_line = 1;
 		else if (is_second_line && buffer != '\n')
 		{
-			if (
-				buffer != config->empty_character
-				&& buffer != config->obstacle_character
-				&& buffer != config->full_character
-			)
-				return (0);
+			return (!is_valid_character(buffer, config));
 			counter++;
 		}
 		else if (is_second_line && buffer == '\n')
