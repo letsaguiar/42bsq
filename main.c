@@ -6,7 +6,7 @@
 /*   By: dadantas <dadantas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 15:42:34 by dadantas         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:21:20 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	process_map(char *filename)
 	config = build_map_config(filename);
 	if (!validate_map(filename, config))
 	{
-		ft_putstr("map error\n");
+		ft_puterr("map error\n");
 	}
 	else
 	{
