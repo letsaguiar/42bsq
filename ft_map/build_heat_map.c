@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 10:52:05 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 11:12:26 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:21:16 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,13 @@ int	**build_raw_heat_map(char **map, t_map_config *config)
 	return (heat_map);
 }
 
-int	validate_heat_square(int **heat_map, t_map_square *square)
+int	validate_heat_square(int **heat_map, t_map_config *config, t_map_square *square)
 {
 	int i;
 	int j;
 
+	if (heat_map[square->i][square->j] > config->n - square->j)
+		return (0);
 	i = square->i;
 	j = square->j;
 	while (j < square->j + heat_map[square->i][square->j] - 1)
@@ -109,7 +111,7 @@ int	**build_heat_map(char **map, t_map_config *config)
 		while (j < config->n)
 		{
 			current_square = build_map_square(current_square, i, j, 0);
-			if (validate_heat_square(heat_map, current_square))
+			if (validate_heat_square(heat_map, config, current_square))
 				j++;
 			else
 				heat_map[i][j] -= 1;

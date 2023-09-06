@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:40 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 11:08:10 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:16:50 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,77 +14,28 @@
 #include "../ft_math/ft_math.h"
 #include <stdlib.h>
 
-int	is_empty_square(char **map, t_map_config *config, t_map_square *square)
+void	print_biggest_square(char **map, t_map_config *config)
 {
-	int	i;
-	int	j;
+	int				i;
+	int				j;
+	int				**heat_map;
+	t_map_square	*biggest_square;
 
-	i = square->i;
-	while (i < square->i + square->size)
+	heat_map = build_heat_map(map, config);
+	biggest_square = (t_map_square *) malloc(sizeof (t_map_square));
+	biggest_square->size = 0;
+	i = 0;
+	while (i < config->m)
 	{
-		j = square->j;
-		while (j < square->j + square->size)
+		j = 0;
+		while (j < config->n)
 		{
-			if (map[i][j] != config->empty_character)
-				return (0);
+			if (heat_map[i][j] > biggest_square->size)
+				biggest_square = build_map_square(biggest_square, i, j, heat_map[i][j]);
 			j++;
 		}
 		i++;
 	}
-	return (1);
-}
-
-t_map_square	*find_biggest_square(char **map, t_map_config *config, int size)
-{
-	t_map_square	*biggest_square;
-	t_map_square	*current_square;
-	int				i;
-	int				j;
-
-	biggest_square = (t_map_square *) malloc(sizeof (t_map_square));
-	current_square = (t_map_square *) malloc(sizeof (t_map_square));
-	i = -1;
-	while (++i <= config->m - size)
-	{
-		j = -1;
-		while (++j <= config->n - size)
-		{
-			current_square = build_map_square(current_square, i, j, size);
-			if (is_empty_square(map, config, current_square))
-			{
-				biggest_square = build_map_square(biggest_square, i, j, size);
-				break ;
-			}
-		}
-		if (biggest_square->size > 0)
-			break ;
-	}
-	free(current_square);
-	return (biggest_square);
-}
-
-t_map_square	*generate_square_permutations(char **map, t_map_config *config)
-{
-	t_map_square	*biggest_square;
-	int				size;
-
-	size = min(config->m, config->n);
-	while (size >= 1)
-	{
-		biggest_square = find_biggest_square(map, config, size);
-		if (biggest_square->size > 0)
-			return (biggest_square);
-		size--;
-	}
-	free(biggest_square);
-	return (NULL);
-}
-
-void	print_biggest_square(char **map, t_map_config *config)
-{
-	t_map_square	*biggest_square;
-
-	biggest_square = generate_square_permutations(map, config);
 	print_map_square(map, config, biggest_square);
 	free(biggest_square);
 }

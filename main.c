@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 10:59:46 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:17:03 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	process_map(char *filename)
 	else
 	{
 		map = load_map(filename, config);
-		build_heat_map(map, config);
 		print_biggest_square(map, config);
 		printf("\n");
 		destroy_map(map);
