@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:48:21 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 11:12:38 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:43:51 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_map_square {
 	int	j;
 	int	size;
 }	t_map_square;
+
+t_map_square	*get_warmest_square(char **map, t_map_config *config);
 
 t_map_square	*build_map_square(t_map_square *square, int i, int j, int size);
 
@@ -47,6 +49,5 @@ void			print_biggest_square(char **map, t_map_config *config);
 
 void			destroy_map(char **map);
 
-int				**build_heat_map(char **map, t_map_config *config);
 
 #endif

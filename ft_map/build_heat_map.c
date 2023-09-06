@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 10:52:05 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 11:21:16 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:44:47 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,16 @@ int	validate_heat_square(int **heat_map, t_map_config *config, t_map_square *squ
 	return (1);
 }
 
-int	**build_heat_map(char **map, t_map_config *config)
+t_map_square	*get_warmest_square(char **map, t_map_config *config)
 {
 	t_map_square	*current_square;
+	t_map_square	*warmest_square;
 	int				**heat_map;
 	int				i;
 	int				j;
 
+	warmest_square = (t_map_square *) malloc(sizeof (t_map_square));
+	warmest_square->size = 0;
 	current_square = (t_map_square *) malloc(sizeof (t_map_square));
 	heat_map = build_raw_heat_map(map, config);
 	i = 0;
@@ -112,11 +115,15 @@ int	**build_heat_map(char **map, t_map_config *config)
 		{
 			current_square = build_map_square(current_square, i, j, 0);
 			if (validate_heat_square(heat_map, config, current_square))
+			{
+				if (heat_map[i][j] > warmest_square->size)
+					warmest_square = build_map_square(warmest_square, i, j, heat_map[i][j]);
 				j++;
+			}
 			else
 				heat_map[i][j] -= 1;
 		}
 		i++;
 	}
-	return (heat_map);
+	return (warmest_square);
 }
