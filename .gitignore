@@ -1,5 +1,6 @@
-# Executable File
+# Executable Files
 bsq
+*.o
 
 # Test Maps
 maps/
