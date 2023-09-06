@@ -6,11 +6,10 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 14:43:54 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:35:06 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "ft_map/ft_map.h"
@@ -25,7 +24,7 @@ void	process_map(char *filename)
 	config = build_map_config(filename);
 	if (!validate_map(filename, config))
 	{
-		ft_putstr("map error");
+		ft_putstr("map error\n");
 	}
 	else {
 		heat_map = build_heat_map(filename, config);
@@ -33,8 +32,8 @@ void	process_map(char *filename)
 		print_map_square(filename, config, biggest_square);
 		destroy_heat_map(heat_map, config);
 		free(biggest_square);
+		ft_putstr("\n");
 	}
-	ft_putstr("\n");
 	free(config);
 }
 

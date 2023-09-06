@@ -3,7 +3,6 @@ FLAGS = -Wall -Wextra -Werror
 FILES = \
 	ft_map/build_map_square.o \
 	ft_map/print_map_square.o \
-	ft_map/print_heat_map.o \
 	ft_map/validate_map.o \
 	ft_map/build_heat_map.o \
 	ft_map/destroy_heat_map.o \

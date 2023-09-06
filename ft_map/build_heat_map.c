@@ -6,13 +6,12 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 10:52:05 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 15:15:35 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:35:09 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
 #include <fcntl.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 

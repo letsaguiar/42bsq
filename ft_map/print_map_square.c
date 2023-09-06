@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:32:47 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 14:43:38 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:36:19 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_map_square(char *filename, t_map_config *config, t_map_square *square
 	{
 		if (is_first_line && buffer == '\n')
 			is_first_line = 0;
-		if (
+		else if (
 			!is_first_line
 			&& i >= square->i
 			&& i <= square->i + square->size
