@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_map.c                                         :+:      :+:    :+:   */
+/*   load_map_config.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
+/*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 18:50:55 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/04 19:30:28 by leticia-aguia    ###   ########.fr       */
+/*   Created: 2023/09/04 18:50:55 by leticia-agu       #+#    #+#             */
+/*   Updated: 2023/09/06 09:07:47 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 #include "ft_map.h"
 #include "../ft_string/ft_string.h"
 
-t_map	*build_empty_map_config(void)
+t_map_config	*build_empty_map_config(void)
 {
-	t_map	*map;
+	t_map_config	*map;
 
-	map = (t_map *) malloc(sizeof (t_map));
-	map->line_counter = 0;
-	map->line_length = 0;
+	map = (t_map_config *) malloc(sizeof (t_map_config));
+	map->m = 0;
+	map->n = 0;
 	map->empty_character = '\0';
 	map->obstacle_character = '\0';
 	map->full_character = '\0';
 	return (map);
 }
 
-void	read_map_config(char *filename, t_map *map)
+void	read_map_config(char *filename, t_map_config *map)
 {
 	int		fd;
 	char	buffer;
@@ -38,7 +38,7 @@ void	read_map_config(char *filename, t_map *map)
 	while (read(fd, &buffer, 1) > 0 && buffer != '\n')
 	{
 		if (is_numeric_char(buffer))
-			map->line_counter = map->line_counter * 10 + buffer - 48;
+			map->m = map->m * 10 + buffer - 48;
 		else if (!map->empty_character)
 			map->empty_character = buffer;
 		else if (!map->obstacle_character)
@@ -50,7 +50,7 @@ void	read_map_config(char *filename, t_map *map)
 	}
 }
 
-void	read_map_line_length(char *filename, t_map *map)
+void	read_map_line_length(char *filename, t_map_config *map)
 {
 	int		fd;
 	int		counter;
@@ -69,12 +69,12 @@ void	read_map_line_length(char *filename, t_map *map)
 		else if (is_second_line && buffer == '\n')
 			break ;
 	}
-	map->line_length = counter;
+	map->n = counter;
 }
 
-t_map	*load_map_config(char *filename)
+t_map_config	*load_map_config(char *filename)
 {
-	t_map	*map;
+	t_map_config	*map;
 
 	map = build_empty_map_config();
 	read_map_config(filename, map);

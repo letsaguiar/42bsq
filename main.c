@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
+/*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 18:46:04 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/05 10:47:03 by lde-agui         ###   ########.fr       */
+/*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
+/*   Updated: 2023/09/06 09:07:33 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	*config;
+	t_map_config	*config;
 	char	**map;
 
 	if (argc > 1)

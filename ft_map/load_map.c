@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:03:03 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/05 10:33:10 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 09:07:47 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-char	**build_empty_map(t_map *config)
+char	**build_empty_map(t_map_config *config)
 {
 	int		i;
 	char	**map;
 
-	map = malloc((config->line_counter + 1) * sizeof (char *));
+	map = malloc((config->m + 1) * sizeof (char *));
 	i = 0;
-	while (i < config->line_counter)
+	while (i < config->m)
 	{
-		map[i] = malloc(config->line_length * sizeof (char));
+		map[i] = malloc(config->n * sizeof (char));
 		i++;
 	}
 	map[i] = NULL;
@@ -58,7 +58,7 @@ char	**populate_map(char *filename, char **map)
 	return (map);
 }
 
-char	**load_map(char *filename, t_map *config)
+char	**load_map(char *filename, t_map_config *config)
 {
 	char	**map;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-aguiar <marvin@42.fr>              +#+  +:+       +#+        */
+/*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 19:29:25 by leticia-aguia     #+#    #+#             */
-/*   Updated: 2023/09/04 19:41:53 by leticia-aguia    ###   ########.fr       */
+/*   Created: 2023/09/04 19:29:25 by leticia-agu       #+#    #+#             */
+/*   Updated: 2023/09/06 09:07:47 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include <unistd.h>
 #include "ft_map.h"
 
-int	validate_map_config(t_map *config)
+int	validate_map_config(t_map_config *config)
 {
 	return (
-		config->line_length > 0
-		&& config->line_counter > 0
+		config->n > 0
+		&& config->m > 0
 		&& config->empty_character
 		&& config->obstacle_character
 		&& config->full_character
 	);
 }
 
-int	validate_map_line_length(char *filename, t_map *config)
+int	validate_map_line_length(char *filename, t_map_config *config)
 {
 	int		fd;
 	char	buffer;
@@ -43,7 +43,7 @@ int	validate_map_line_length(char *filename, t_map *config)
 			counter++;
 		else if (is_second_line && buffer == '\n')
 		{
-			if (counter != config->line_length)
+			if (counter != config->n)
 				return (0);
 			counter = 0;
 		}
@@ -51,7 +51,7 @@ int	validate_map_line_length(char *filename, t_map *config)
 	return (1);
 }
 
-int	validate_map_characters(char *filename, t_map *config)
+int	validate_map_characters(char *filename, t_map_config *config)
 {
 	int		fd;
 	char	buffer;
@@ -74,7 +74,7 @@ int	validate_map_characters(char *filename, t_map *config)
 	return (1);
 }
 
-int	validate_map(char *filename, t_map *config)
+int	validate_map(char *filename, t_map_config *config)
 {
 	return (
 		validate_map_config(config)
