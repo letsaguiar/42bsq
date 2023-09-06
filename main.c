@@ -30,7 +30,10 @@ void	process_map(char *filename)
 	{
 		heat_map = build_heat_map(filename, config);
 		biggest_square = get_biggest_square(heat_map, config);
-		print_map_square(filename, config, biggest_square);
+		if (biggest_square->size > 0)
+			print_map_square(filename, config, biggest_square);
+		else
+			ft_puterr("map error");
 		destroy_heat_map(heat_map, config);
 		free(biggest_square);
 		ft_putstr("\n");
