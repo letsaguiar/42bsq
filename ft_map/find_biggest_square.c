@@ -6,21 +6,13 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:40 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 10:11:38 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:08:10 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
 #include "../ft_math/ft_math.h"
 #include <stdlib.h>
-
-t_map_square	*build_map_square(t_map_square *square, int i, int j, int size)
-{
-	square->i = i;
-	square->j = j;
-	square->size = size;
-	return (square);
-}
 
 int	is_empty_square(char **map, t_map_config *config, t_map_square *square)
 {
