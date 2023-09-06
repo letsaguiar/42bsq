@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_heat_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dadantas <dadantas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 10:52:05 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 15:35:09 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:42:04 by dadantas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,11 @@ int	**build_heat_map(char *filename, t_map_config *config)
 	return (heat_map);
 }
 
-int	validate_heat_square(int **heat_map, t_map_config *config, t_map_square *square)
+int	validate_heat_square(
+		int **heat_map, t_map_config *config, t_map_square *square)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	if (heat_map[square->i][square->j] > config->n - square->j)
 		return (0);
@@ -134,7 +135,8 @@ t_map_square	*get_biggest_square(int **heat_map, t_map_config *config)
 			if (validate_heat_square(heat_map, config, current_square))
 			{
 				if (heat_map[i][j] > biggest_square->size)
-					biggest_square = build_map_square(biggest_square, i, j, heat_map[i][j]);
+					biggest_square = build_map_square(
+							biggest_square, i, j, heat_map[i][j]);
 				j++;
 			}
 			else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_map_square.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dadantas <dadantas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:32:47 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 15:36:19 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:42:52 by dadantas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-void	print_map_square(char *filename, t_map_config *config, t_map_square *square)
+void	print_map_square(
+		char *filename, t_map_config *config, t_map_square *square)
 {
 	int		is_first_line;
 	int		i;
