@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 14:11:52 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:43:54 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	process_map(char *filename)
 {
 	t_map_config	*config;
 	int				**heat_map;
+	t_map_square	*biggest_square;
 
 	config = build_map_config(filename);
 	if (!validate_map(filename, config))
@@ -28,8 +29,10 @@ void	process_map(char *filename)
 	}
 	else {
 		heat_map = build_heat_map(filename, config);
-		print_heat_map(heat_map, config);
+		biggest_square = get_biggest_square(heat_map, config);
+		print_map_square(filename, config, biggest_square);
 		destroy_heat_map(heat_map, config);
+		free(biggest_square);
 	}
 	ft_putstr("\n");
 	free(config);

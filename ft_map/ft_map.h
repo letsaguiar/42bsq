@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:48:21 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 14:10:36 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:42:35 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int				**build_heat_map(char *filename, t_map_config *config);
 
 void			print_heat_map(int **heat_map, t_map_config *config);
 
+void			print_map_square(char *filename, t_map_config *config, t_map_square *square);
+
 void			destroy_heat_map(int **heat_map, t_map_config *config);
+
+t_map_square	*get_biggest_square(int	**heat_map, t_map_config *config);
 
 #endif
