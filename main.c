@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dadantas <dadantas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 15:35:06 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:42:34 by dadantas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	process_map(char *filename)
 	{
 		ft_putstr("map error\n");
 	}
-	else {
+	else
+	{
 		heat_map = build_heat_map(filename, config);
 		biggest_square = get_biggest_square(heat_map, config);
 		print_map_square(filename, config, biggest_square);
