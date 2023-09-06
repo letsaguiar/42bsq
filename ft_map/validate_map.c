@@ -22,6 +22,9 @@ int	validate_map_config(t_map_config *config)
 		&& config->empty_character
 		&& config->obstacle_character
 		&& config->full_character
+		&& config->empty_character != config->obstacle_character
+		&& config->empty_character != config->full_character
+		&& config->obstacle_character != config->full_character
 	);
 }
 
