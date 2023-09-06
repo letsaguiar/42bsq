@@ -6,43 +6,72 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 10:13:53 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 10:42:55 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "ft_map/ft_map.h"
 #include "ft_string/ft_string.h"
 
-void	process_maps(char **maps)
+void	process_map(char *filename)
+{
+	t_map_config	*config;
+	char			**map;
+
+	config = load_map_config(filename);
+	if (!validate_map(filename, config))
+	{
+		ft_putstr("map error");
+	}
+	else
+	{
+		map = load_map(filename, config);
+		print_biggest_square(map, config);
+		destroy_map(map);
+	}
+	ft_putstr("\n");
+	free(config);
+}
+
+void	process_maps_from_args(char **maps)
 {
 	int				i;
-	char			**map;
-	t_map_config	*config;
 
 	i = 1;
 	while (maps[i])
 	{
-		config = load_map_config(maps[i]);
-		if (!validate_map(maps[i], config))
-		{
-			ft_putstr("map error");
-		}
+		process_map(maps[i]);
+		i++;
+	}
+}
+
+void	process_maps_from_stdi(void)
+{
+	int		i;
+	char	buffer;
+	char	filename[1024];
+
+	i = 0;
+	while (read(0, &buffer, 1) > 0)
+	{
+		if (buffer != '\n')
+			filename[i++] = buffer;
 		else
 		{
-			map = load_map(maps[i], config);
-			print_biggest_square(map, config);
-			destroy_map(map);
+			filename[i++] = '\0';
+			process_map(filename);
+			exit(0);
 		}
-		ft_putstr("\n");
-		free(config);
-		i++;
 	}
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc > 1)
-		process_maps(argv);
+		process_maps_from_args(argv);
+	else
+		process_maps_from_stdi();
 	return (0);
 }
