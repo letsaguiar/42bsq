@@ -6,7 +6,7 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 11:17:03 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:11:52 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@
 void	process_map(char *filename)
 {
 	t_map_config	*config;
+	int				**heat_map;
 
 	config = build_map_config(filename);
 	if (!validate_map(filename, config))
 	{
 		ft_putstr("map error");
+	}
+	else {
+		heat_map = build_heat_map(filename, config);
+		print_heat_map(heat_map, config);
+		destroy_heat_map(heat_map, config);
 	}
 	ft_putstr("\n");
 	free(config);
