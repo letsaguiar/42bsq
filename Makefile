@@ -8,6 +8,7 @@ FILES = \
 	ft_map/destroy_heat_map.o \
 	ft_map/build_map_config.o \
 	ft_string/ft_putstr.o \
+	ft_string/ft_puterr.o \
 	ft_string/ft_putchar.o \
 	ft_string/is_numeric_char.o \
 	ft_string/ft_atoi.o \
