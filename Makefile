@@ -1,4 +1,4 @@
-FILES := main.c ft_map/*.c ft_string/*.c ft_math/*.c
+FILES := main.c ft_map/*.c ft_string/*.c
 FLAGS := -Wall -Wextra -Werror
 
 bsq: $(FILES)

@@ -6,12 +6,11 @@
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 10:52:05 by lde-agui          #+#    #+#             */
-/*   Updated: 2023/09/06 14:40:48 by lde-agui         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:15:35 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_map.h"
-#include "../ft_math/ft_math.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
