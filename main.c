@@ -19,19 +19,11 @@
 void	process_map(char *filename)
 {
 	t_map_config	*config;
-	char			**map;
 
-	config = load_map_config(filename);
+	config = build_map_config(filename);
 	if (!validate_map(filename, config))
 	{
 		ft_putstr("map error");
-	}
-	else
-	{
-		map = load_map(filename, config);
-		print_biggest_square(map, config);
-		printf("\n");
-		destroy_map(map);
 	}
 	ft_putstr("\n");
 	free(config);

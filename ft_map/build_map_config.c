@@ -72,7 +72,7 @@ void	read_map_line_length(char *filename, t_map_config *map)
 	map->n = counter;
 }
 
-t_map_config	*load_map_config(char *filename)
+t_map_config	*build_map_config(char *filename)
 {
 	t_map_config	*map;
 
