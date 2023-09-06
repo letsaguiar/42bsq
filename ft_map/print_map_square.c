@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_map_square.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-agui <lde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 18:46:04 by leticia-agu       #+#    #+#             */
-/*   Updated: 2023/09/06 09:55:04 by lde-agui         ###   ########.fr       */
+/*   Created: 2023/09/06 09:06:17 by lde-agui          #+#    #+#             */
+/*   Updated: 2023/09/06 09:39:42 by lde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_map/ft_map.h"
-#include "ft_string/ft_string.h"
+#include "ft_map.h"
 
-int	main(int argc, char **argv)
+void	print_map_square(char **map, t_map_config *config, t_map_square *square)
 {
-	t_map_config	*config;
-	char			**map;
+	int	i;
+	int	j;
 
-	if (argc > 1)
+	i = square->i;
+	while (i < square->i + square->size)
 	{
-		config = load_map_config(argv[1]);
-		if (!validate_map(argv[1], config))
+		j = square->j;
+		while (j < square->j + square->size)
 		{
-			ft_putstr("map error\n");
-			return (1);
+			map[i][j] = config->full_character;
+			j++;
 		}
-		map = load_map(argv[1], config);
-		print_biggest_square(map, config);
-		destroy_map(map);
-		free(config);
+		i++;
 	}
-	return (0);
+	print_map(map);
 }
